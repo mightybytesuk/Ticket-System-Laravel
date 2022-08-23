@@ -27,9 +27,9 @@ class TicketController extends Controller
 
     public function tickets()
     {
-        //$tickets = Tickets::where('user_id', Auth::user()->id);
+        
         $tickets = Tickets::where('user_id', Auth::user()->id)
-               ->get();
+                    ->get();
         return view('tickets.tickets', [
             'tickets' => $tickets
         ]);
