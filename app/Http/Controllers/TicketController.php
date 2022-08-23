@@ -24,6 +24,9 @@ class TicketController extends Controller
         $ticket->user_id = Auth::user()->id;
         $ticket->save();
 
+        return redirect('/tickets')->with('success', 'Reply has been sent!');  
+
+
     }
 
     public function tickets()
