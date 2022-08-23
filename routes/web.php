@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TicketController;
@@ -17,7 +18,7 @@ use App\Http\Controllers\TicketController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/home');
 });
 
 Auth::routes();
@@ -26,6 +27,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->midd
 
 //Ticket Routes
 Route::get('/tickets', [TicketController::class, 'tickets'])->middleware('auth')->name('tickets');
+Route::get('/ticket/{id}', [TicketController::class, 'ticket'])->middleware('auth', 'message')->name('view-ticket');
+Route::post('/ticket/reply', [TicketController::class, 'reply'])->middleware('auth','message')->name('reply');
 
 //Create Ticket Routes
 Route::get('/create-ticket', [TicketController::class, 'createTicket'])->middleware('auth')->name('create-ticket');
@@ -43,3 +46,5 @@ Route::post('/admin/claim', [AdminController::class, 'claim'])->middleware('auth
 Route::post('/admin/reply', [AdminController::class, 'reply'])->middleware('auth','admin','message')->name('admin-reply');
 Route::post('/admin/edit/priority', [AdminController::class, 'editpriority'])->middleware('auth','admin','message')->name('edit-priority');
 Route::post('/admin/edit/status', [AdminController::class, 'editstatus'])->middleware('auth','admin','message')->name('edit-status');
+
+Route::get('/signout', [HomeController::class, 'signout'])->name('signout');

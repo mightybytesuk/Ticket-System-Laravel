@@ -78,9 +78,7 @@
               Hello, {{Auth::user()->name}}
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <li><a class="dropdown-item" href="#">Settings</a></li>
-              <li><a class="dropdown-item" href="#">Messages</a></li>
-              <li><a class="dropdown-item" href="#">Sign out</a></li>
+              <li><a class="dropdown-item" href="{{route('signout')}}">Sign out</a></li>
             </ul>
           </div>
     </div>

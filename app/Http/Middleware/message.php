@@ -19,7 +19,10 @@ class message
     public function handle(Request $request, Closure $next)
     {
         //Get ticket the user is replying to 
-        $ticket = DB::table('tickets')->where('id', $request->ticket_id)->first();
+        $ticket = DB::table('tickets')
+        ->where('id', $request->ticket_id)
+        ->orWhere('id', $request->id)
+        ->first();
 
         //Check if user is allowed to reply to the ticket
         if ($ticket->staff_id == Auth::user()->id || $ticket->user_id == Auth::user()->id) {

@@ -74,7 +74,7 @@ class AdminController extends Controller
         $message->user_id = Auth::user()->id;
         $message->save();
 
-        return redirect()->back()->with('success', 'Ticket has been claimed!');   
+        return redirect()->back()->with('success', 'Reply has been sent!');   
      }
 
      public function editPriority(Request $request)
